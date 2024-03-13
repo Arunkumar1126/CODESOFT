@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Chatbot</title>
+<style>
+    #chat-container {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        width: 300px;
+        margin: 0 auto;
+    }
+    #chat-messages {
+        height: 200px;
+        overflow-y: scroll;
+    }
+</style>
+</head>
+<body>
+<div id="chat-container">
+    <div id="chat-messages"></div>
+    <input type="text" id="user-input" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+    const chatMessages = document.getElementById('chat-messages');
+    const userInput = document.getElementById('user-input');
+
+    function sendMessage() {
+        const message = userInput.value.trim();
+        if (message !== '') {
+            displayMessage(message, 'user');
+            userInput.value = '';
+            setTimeout(() => {
+                respondToMessage(message);
+            }, 500);
+        }
+    }
+
+    function respondToMessage(message) {
+        let response;
+        if (message.includes('hello') || message.includes('hi')) {
+            response = "Hello there!";
+        } else if (message.includes('how are you')) {
+            response = "I'm just a simple chatbot, but I'm doing well, thanks!";
+        } else {
+            response = "I'm sorry, I didn't understand that.";
+        }
+        displayMessage(response, 'bot');
+    }
+
+    function displayMessage(message, sender) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', sender);
+        messageElement.innerText = message;
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
