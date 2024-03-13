@@ -1,2 +1,2 @@
 # CODESOFT
-AI Intership
+AI IntershiP
